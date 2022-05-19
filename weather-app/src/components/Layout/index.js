@@ -1,12 +1,12 @@
 import { Outlet, Link } from 'react-router-dom';
 import Sidebar from '../Sidebar';
+import Header from '../Header';
+import Footer from '../Footer'
 
 const Layout = () => {
   return (
     <>
-      <header>
-        <h1>Event and weather app</h1>
-      </header>
+      <Header />
       <nav>
         <Sidebar />
         <ul>
@@ -20,9 +20,7 @@ const Layout = () => {
       </nav>
 
       <Outlet />
-      <footer>
-       <p>FOOTER</p>
-      </footer>
+      <Footer />
     </>
   )
 };
