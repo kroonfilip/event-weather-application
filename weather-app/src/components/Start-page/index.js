@@ -11,7 +11,7 @@ const Startpage = () => {
                 TEXT MED INFORMATION
             </p>
             <h3>Ange stad</h3>
-            <input type="text" placeholder="Sök stad"></input>
+            <input type="text" id ="search-field" placeholder="Sök stad"></input>
             <h3>RESULTAT</h3>
             <ul id="item-list">
 
