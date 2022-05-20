@@ -1,11 +1,19 @@
 import './index.css';
-//import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 
 const Sidebar = () => {
     return (
-        <div className="nav">
-            <h1>Sidebar</h1>
+        <div>
+            <h1>Logotype</h1>
+            <ul>
+                <li>
+                    <Link to="/">Home</Link>
+                </li>
+                <li>
+                    <Link to="/favorites">Favories</Link>
+                </li>
+            </ul>
         </div>
     )
 }

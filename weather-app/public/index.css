@@ -1,0 +1,53 @@
+#root {
+    max-width: 1300px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    grid-template-rows: 75px 1fr 75px;
+    grid-template-areas:
+    "nav header"
+    "nav main"
+    "nav footer";
+
+    height: 100vh;
+}
+
+#root > .container {
+    grid-area: main;
+    background-color: pink;
+}
+
+#root > .favorites {
+    grid-area: main;
+    background-color: pink;
+}
+
+
+#root > nav {
+    grid-area: nav;
+    background-color: aqua;
+}
+
+#root > header {
+    grid-area: header;
+    background-color: blueviolet;
+}
+
+#root > footer {
+    grid-area: footer;
+    background-color: brown;
+}
+
+@media screen and (max-width: 600px) {
+    
+    #root {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 75px 100px 1fr 75px;
+        grid-template-areas:
+        "header"
+        "nav"
+        "main"
+        "footer";
+    }
+}

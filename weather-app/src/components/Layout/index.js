@@ -9,14 +9,6 @@ const Layout = () => {
       <Header />
       <nav>
         <Sidebar />
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/favorites">Favories</Link>
-          </li>
-        </ul>
       </nav>
 
       <Outlet />
