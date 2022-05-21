@@ -7,7 +7,7 @@ const Startpage = () => {
     const [location, setLocation] = useState('')
    
 
-    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lang=se&units=metric&q=${location}&appid=bcea789825d8474a842b9612811b70e3`;
+    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lang=se&units=metric&q=${location}&appid=`;
     const searchLocation = (event) => {
         if (event.key === 'Enter') {
             axios.get(apiUrl).then((response) => {
@@ -41,7 +41,7 @@ const Startpage = () => {
             <h3>RESULTAT</h3>
             <div id="location-info">
       
-                
+                    
                     <h3>{data.name}</h3>
                     {data.weather ? <img src={`http://openweathermap.org/img/w/${data.weather[0].icon}.png`} alt="weather icon"></img>: null}
                     {data.main ? <p>Temperatur: {data.main.temp}°C</p> : null}
