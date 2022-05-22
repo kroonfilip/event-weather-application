@@ -2,7 +2,7 @@
 const Footer = () => {
     return (
         <footer>
-        <p>FOOTER</p>
+        <div className="socialmedia">Place social media icons here</div>
        </footer>
     )
 }

@@ -2,51 +2,83 @@
     max-width: 1300px;
     margin: auto;
     display: grid;
-    grid-template-columns: 180px 1fr;
-    grid-template-rows: 75px 1fr 75px;
+    grid-template-columns: auto;
+    grid-template-rows: 100px auto 75px;
     grid-template-areas:
-    "nav header"
-    "nav main"
-    "nav footer";
+    "header"
+    "main"
+    "footer";
 
     height: 100vh;
 }
 
-#root > .container {
+#root > .start-page {
+    width: 100%;
+    margin: 10px;
     grid-area: main;
-    background-color: pink;
+    background-color: white;
+    color: black;
 }
 
 #root > .favorites {
+    width: 100%;
+    margin: 10px;
     grid-area: main;
-    background-color: pink;
+    background-color: white;
+    color: black;
 }
 
-
-#root > nav {
-    grid-area: nav;
-    background-color: aqua;
-}
 
 #root > header {
+    width: 100%;
     grid-area: header;
-    background-color: blueviolet;
+    background-color: black;
 }
 
+#root > header > .navbar {
+    background-color: black;
+}
+
+li {
+    border-bottom: #f0c322;
+}
+
+a {
+    color: #f0c322;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #1890ff;
+    text-decoration: none;
+}
+
+.navbar-toggler {
+    background-color: #f0c322;
+}
+
+
 #root > footer {
+    width: 100%;
     grid-area: footer;
-    background-color: brown;
+    background-color: black;
+    color: white;
+}
+
+#root > footer > .socialmedia {
+    margin: auto;
+    width: 50%;
+    text-align: center;
 }
 
 @media screen and (max-width: 600px) {
     
     #root {
         display: grid;
-        grid-template-columns: 1fr;
-        grid-template-rows: 75px 100px 1fr 75px;
+        grid-template-columns: auto;
+        grid-template-rows: 100px auto 75px;
         grid-template-areas:
         "header"
-        "nav"
         "main"
         "footer";
     }

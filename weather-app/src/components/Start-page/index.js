@@ -4,7 +4,7 @@ const Startpage = () => {
 
     return (
         <>
-        <div className="container start-page">
+        <div className="start-page">
             <h1>Startpage</h1>
             <h2>INFO</h2>
             <p>
