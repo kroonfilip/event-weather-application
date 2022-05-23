@@ -18,9 +18,21 @@ const Startpage = () => {
         
     }
 }       
-
     
-        
+    var days = {weekday: 'long', month: 'long', day: 'numeric'};
+    
+    var renderApiDataForWeek = data.daily 
+        ? data && data.daily.map(item =>{
+                return (
+                <React.Fragment key={item}>
+                <p>Datum: {new Date(item.dt * 1000).toLocaleDateString("se", days)}</p>
+                <img src = {`http://openweathermap.org/img/w/${data.current.weather[0].icon}.png`} alt="weather-icon"></img>
+                <p>Temperatur: {item.temp.day}°C</p>
+                <p>{item.weather[0].description}</p>
+                
+                </React.Fragment>
+                )
+            }) : "laddar..."
     return (
         <>
         <div className="container start-page">
@@ -42,25 +54,13 @@ const Startpage = () => {
                 <div id="current-weather">
             
                     {data.current ? <img src={`http://openweathermap.org/img/w/${data.current.weather[0].icon}.png`} alt="weather icon"></img>: null}
-                    {data.current ? <p>{data.current.temp}</p>: null}
+                    {data.current ? <p>Temperatur: {data.current.temp}°C</p>: null}
                     {data.current ? <p>Är just nu: {data.current.weather[0].description}</p>: null}
                 </div>
 
                 <div id="weather-seven-days">
                 <h3>7 dagar frammåt</h3>
-                {data.daily 
-                ? data && data.daily.map(item =>{
-                        return (
-                        <React.Fragment key={item}>
-                        <p>Datum: {new Date(item.dt * 1000).toLocaleDateString("en")}</p>
-                        <img src = {`http://openweathermap.org/img/w/${data.current.weather[0].icon}.png`} alt="weather-icon"></img>
-                        <p>Temperatur: {item.temp.day}°C</p>
-                        <p>{item.weather[0].description}</p>
-                        
-                        </React.Fragment>
-                        )
-                        
-                }) : "laddar..."}
+                    {renderApiDataForWeek}
                 </div> 
             </div>
                 
