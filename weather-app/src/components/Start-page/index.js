@@ -1,20 +1,23 @@
-
 import React, {useState} from 'react'
 import axios from 'axios'
+
 const Startpage = () => {
     
     const [data, setData] = useState([])
     const [location, setLocation] = useState('')
-   
-    const apiUrl = `https://api.openweathermap.org/data/3.0/onecall?lat=33.44&lon=-94.04&units=metric&lang=se&exclude=hourly,minutely&appid=7b876dba81adf23c3ab28f297a4ac7aa`
-    //const apiUrl = `http://api.openweathermap.org/data/2.5/weather?q=${location}&lang=se&units=metric&appid=bcea789825d8474a842b9612811b70e3`;
+    let place = 'Kazakstan'
+    const apiUrlGeoLocation = 'http://api.openweathermap.org/geo/1.0/direct?q='+place+'&appid='
     const searchFunction = (event) => {
         if (event.key === 'Enter') {
-            axios.get(apiUrl).then((response) => {
-                setData(response.data)
-                console.log(response.data)
-                
-        })
+            axios.get(apiUrlGeoLocation).then((response) => {
+                var lat = response.data[0].lat
+                var long = response.data[0].lon
+                const apiUrlWeather = 'https://api.openweathermap.org/data/3.0/onecall?lat='+lat+'&lon='+long+'&units=metric&lang=se&exclude=hourly,minutely&appid='
+                axios.get(apiUrlWeather).then((response) => {
+                    setData(response.data)
+                    console.log(response.data)
+                })
+            })
         
     }
 }       
