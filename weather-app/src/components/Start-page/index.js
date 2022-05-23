@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 
 const Startpage = () => {
@@ -6,8 +6,9 @@ const Startpage = () => {
     const [data, setData] = useState([])
     const [location, setLocation] = useState('')
     let place = 'Kazakstan'
-    const apiUrlGeoLocation = 'http://api.openweathermap.org/geo/1.0/direct?q='+place+'&appid='
+    const apiUrlGeoLocation = `http://api.openweathermap.org/geo/1.0/direct?q=${location}&appid=`
     const searchFunction = (event) => {
+       
         if (event.key === 'Enter') {
             axios.get(apiUrlGeoLocation).then((response) => {
                 var lat = response.data[0].lat
@@ -20,7 +21,24 @@ const Startpage = () => {
             })
         
     }
-}       
+}  
+    
+
+
+    useEffect(() => {
+        localStorage.setItem('saved', JSON.stringify({
+            location: location ,
+            temp: data.current ? data.current.temp: null, 
+            img: data.current ? data.current.weather[0].icon: null
+        }))
+    //localStorage.setItem('location', JSON.stringify(data.current ? data.current.temp: data.current));
+
+    }, [location, data]);
+
+    var storage= JSON.parse(localStorage.getItem('saved'));
+    
+
+
     
     var days = {weekday: 'long', month: 'long', day: 'numeric'};
     
@@ -36,6 +54,8 @@ const Startpage = () => {
                 </React.Fragment>
                 )
             }) : "laddar..."
+             
+            
     return (
         <>
         <div className="start-page">
@@ -47,15 +67,18 @@ const Startpage = () => {
             <h3>Ange stad</h3>
             <input type="text" 
             id ="search-field" 
-            onChange={event => setLocation(event.target.value)} 
-            value={location}
+            onKeyPress={event => event.key === 'Enter' && setLocation(event.target.value)} 
             onKeyUp={searchFunction}
-            placeholder="Sök stad"></input>
+            placeholder="Sök stad">
+            </input>
+            
+            
+            
             
             <h3>RESULTAT</h3>
             <div id="location-info">
                 <div id="current-weather">
-            
+                    <h3>Visar resultat för: {location}</h3>
                     {data.current ? <img src={`http://openweathermap.org/img/w/${data.current.weather[0].icon}.png`} alt="weather icon"></img>: null}
                     {data.current ? <p>Temperatur: {data.current.temp}°C</p>: null}
                     {data.current ? <p>Är just nu: {data.current.weather[0].description}</p>: null}
@@ -64,6 +87,8 @@ const Startpage = () => {
                 <div id="weather-seven-days">
                 <h3>7 dagar frammåt</h3>
                     {renderApiDataForWeek}
+                    <h2>LOCALSTORAGE DATA</h2>
+                        {storage}
                 </div> 
             </div>
                 
