@@ -1,10 +1,11 @@
-import Menu from "../Menu";
 
 const Header = () => {
     return (
+        <>
             <header>
-                <Menu />
+                <img src="ew-logo.png" style={{height: '225px'}} alt="Logo" />
             </header>
+        </>
     )
 }
 
