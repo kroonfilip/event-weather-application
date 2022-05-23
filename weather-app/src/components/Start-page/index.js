@@ -6,7 +6,7 @@ const Startpage = () => {
     const [data, setData] = useState([])
     const [location, setLocation] = useState('')
     let place = 'Malmö'
-    const apiUrlGeoLocation = 'http://api.openweathermap.org/geo/1.0/direct?q='+place+'&appid=bcea789825d8474a842b9612811b70e3'
+    const apiUrlGeoLocation = 'http://api.openweathermap.org/geo/1.0/direct?q='+location+'&appid=bcea789825d8474a842b9612811b70e3'
 
     const searchFunction = (event) => {
         if (event.key === 'Enter') {
@@ -19,7 +19,7 @@ const Startpage = () => {
                     console.log(response.data)
                 })
             })
-            const apiUrlTicketmaster = 'https://app.ticketmaster.com/discovery/v2/events.json?city='+place+'&apikey=4Kl2lBFXuu3mkGzmE4P6VXRoXqfgar8O'
+            const apiUrlTicketmaster = 'https://app.ticketmaster.com/discovery/v2/events.json?city='+location+'&apikey=4Kl2lBFXuu3mkGzmE4P6VXRoXqfgar8O'
             axios.get(apiUrlTicketmaster).then((answer) => {
                 console.log(answer.data)
             })
