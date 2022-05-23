@@ -53,36 +53,19 @@ const Startpage = () => {
                         return (
                         <React.Fragment key={item}>
                         <p>Datum: {new Date(item.dt * 1000).toLocaleDateString("en")}</p>
-                        <img src = {`http://openweathermap.org/img/w/${data.current.weather[0].icon}.png`}></img>
-                        <p>Temperatur: {item.temp.day}</p>
+                        <img src = {`http://openweathermap.org/img/w/${data.current.weather[0].icon}.png`} alt="weather-icon"></img>
+                        <p>Temperatur: {item.temp.day}°C</p>
                         <p>{item.weather[0].description}</p>
                         
                         </React.Fragment>
                         )
                         
-                        
-                        
-
-                    }) : "laddar..."}
-                
-                    
-                    
+                }) : "laddar..."}
                 </div> 
-                
-            
-                    <h3>{data.name}</h3>
-                    {data.weather ? <img src={`http://openweathermap.org/img/w/${data.weather[0].icon}.png`} alt="weather icon"></img>: null}
-                    {data.main ? <p>Temperatur: {data.main.temp}°C</p> : null}
-                    {data.weather ? <p>Är just nu: {data.weather[0].description}</p>: null}
-                    {data.main ? <p>Luftfuktighet: {data.main.humidity}</p> : null}
-                    {data.wind ? <p>Vindhastighet: {data.wind.speed} Km/h</p> : null}
-                    
-                    
-                    
-                    </div>
-                
-                
             </div>
+                
+                
+        </div>
         
         </>
         
