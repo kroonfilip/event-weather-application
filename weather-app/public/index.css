@@ -2,19 +2,20 @@
     max-width: 1300px;
     margin: auto;
     display: grid;
-    grid-template-columns: auto;
-    grid-template-rows: 100px auto 75px;
+    grid-template-columns: 200px auto;
+    grid-template-rows: 250px auto 75px;
     grid-template-areas:
-    "header"
-    "main"
-    "footer";
+    "header header"
+    "nav main"
+    "footer footer";
 
     height: 100vh;
+    border: 2px solid black;
 }
 
 #root > .start-page {
     width: 100%;
-    margin: 10px;
+    padding: 10px;
     grid-area: main;
     background-color: white;
     color: black;
@@ -22,7 +23,7 @@
 
 #root > .favorites {
     width: 100%;
-    margin: 10px;
+    padding: 10px;
     grid-area: main;
     background-color: white;
     color: black;
@@ -32,31 +33,37 @@
 #root > header {
     width: 100%;
     grid-area: header;
-    background-color: black;
+    background-image: url(header-bg.png); 
 }
 
-#root > header > .navbar {
-    background-color: black;
+#root > nav {
+    grid-area: nav;
+    background-color: white;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    margin-top: 5px;
+    padding: 0;
 }
 
 li {
-    border-bottom: #f0c322;
+    padding: 8px;
+    margin-bottom: 7px;
+    background-color: #f0c322;
+    color: #ffffff;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+
+li:hover {
+    background-color: #c7a21b;
 }
 
 a {
-    color: #f0c322;
     text-decoration: none;
+    font-weight: bold;
 }
-
-a:hover {
-    color: #1890ff;
-    text-decoration: none;
-}
-
-.navbar-toggler {
-    background-color: #f0c322;
-}
-
 
 #root > footer {
     width: 100%;
@@ -67,18 +74,22 @@ a:hover {
 
 #root > footer > .socialmedia {
     margin: auto;
-    width: 50%;
+    width: 20%;
     text-align: center;
+    display: flex; 
+    justify-content: space-between;
 }
+
 
 @media screen and (max-width: 600px) {
     
     #root {
         display: grid;
         grid-template-columns: auto;
-        grid-template-rows: 100px auto 75px;
+        grid-template-rows: 250px 100px auto 75px;
         grid-template-areas:
         "header"
+        "nav"
         "main"
         "footer";
     }
