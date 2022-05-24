@@ -3,7 +3,7 @@ const Header = () => {
     return (
         <>
             <header>
-                <img src="ew-logo.png" style={{height: '225px'}} alt="Logo" />
+                <img src="ew-logo.png" style={{height: '175px'}} alt="Logo" />
             </header>
         </>
     )
