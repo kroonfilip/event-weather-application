@@ -1,70 +1,36 @@
-# Getting Started with Create React App
+## General info
+This React App is developed by three students as a part of the university course *Multi-platform applications with web technologies* 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Project
+We have developed an event and weather application. With the help of this website a user can search for and store the weather forecast and upcoming events i any searchable city for the next 7 days.
 
-## Available Scripts
+## API
+We have used two external APIs:
 
-In the project directory, you can run:
+* https://openweathermap.org/api
 
-### `npm start`
+* https://app.ticketmaster.com/discovery/v2/
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Technology
+This project is created with:
+* React version: 18.1.0
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Arguments for React
+* **Learning curve** 
+    * It is considered to have a lower learning curve than, for example, Angular.
+* **Size** 
+    * We have chosen to use the React framework as we considered this to be a suitable framework for an application of this size.
+* **Job opportunities** 
+    * According to our assessments, React is a very common framework used by many companies right now. Experience with React is often requested in job advertisements.
+    * According to Google trends, it is confirmed that there is a great deal of interest in React in the labor market.
+    * [Google Trends] (https://trends.google.com/trends/embed/explore/TIMESERIES?req=%7B%22comparisonItem%22%3A%5B%7B%22keyword%22%3A%22Vue%20jobs%22%2C%22geo%22%3A%22%22%2C%22time%22%3A%22today%2012-m%22%7D%2C%7B%22keyword%22%3A%22React%20jobs%22%2C%22geo%22%3A%22%22%2C%22time%22%3A%22today%2012-m%22%7D%2C%7B%22keyword%22%3A%22Angular%20jobs%22%2C%22geo%22%3A%22%22%2C%22time%22%3A%22today%2012-m%22%7D%5D%2C%22category%22%3A31%2C%22property%22%3A%22%22%7D&tz=-120&eq=cat%3D31%26q%3DVue%2520jobs%2CReact%2520jobs%2CAngular%2520jobs%26date%3Dtoday%2012-m%2Ctoday%2012-m%2Ctoday%2012-m)
 
-### `npm test`
+* **Community**
+    * Large active community that contributes to its development.
+    * With Facebook behind it and several other major influential companies using it, there is probably strong support for the framework in the foreseeable future. This means that we can expect stability and that new versions will be released regularly.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Other possible frameworks
+* **Angular**
+    * Opted out due to a higher learning curve and that it is considered more suitable for larger business applications.
+* **Vue**
+    * Vue could be an alternative as it is a small and fast framework, but React's extensive support, flexibility and in-demand knowledge of the labor market outweighs and in this case it is the decisive argument.
