@@ -3,7 +3,8 @@ import axios from 'axios'
 
 const Startpage = () => {
     
-    const [data, setData] = useState([])
+    const [weather, setWeather] = useState([])
+    const [event, setEvent] = useState([])
     const location = useRef()
     const date = useRef()
     
@@ -11,47 +12,56 @@ const Startpage = () => {
 
     const endDate = new Date()
     endDate.setDate(endDate.getDate() + 7);
-    console.log(endDate)
-
-    const dateChoosen = '2022-05-26T11:00:00Z'
 
 
     const searchFunction = (event) => {
         event.preventDefault()
         if (location.current.value !=="" && date.current.value !== ""){
+            let diffDays = getDiffDays(date.current.value)
             const apiUrlGeoLocation = 'http://api.openweathermap.org/geo/1.0/direct?q='+location.current.value+'&appid=bcea789825d8474a842b9612811b70e3'
             axios.get(apiUrlGeoLocation).then((response) => {
                 var lat = response.data[0].lat
                 var long = response.data[0].lon
-                getWeather(lat, long, dateChoosen)  
+                getWeather(lat, long, diffDays)  
             })
-            /*const apiUrlTicketmaster = 'https://app.ticketmaster.com/discovery/v2/events.json?city='+location.current.value+'&startDateTime='+startDateWithTime+'&endDateTime='+endDateWithTime+'&apikey=4Kl2lBFXuu3mkGzmE4P6VXRoXqfgar8O'
-            axios.get(apiUrlTicketmaster).then((answer) => {
-                //const events = answer.data._embedded.events;
-                console.log(answer.data)
-            })
-            */
+            getEvents()
 
         } else {
             alert("You need to give location and date to be able to get events!")
         }
-
-        location.current.value= "";
-        date.current.value = "";
 }
 
-function getWeather(lat, long, dateChoosen) {
+function getWeather(lat, long, diff) {
     const apiUrlWeather = 'https://api.openweathermap.org/data/3.0/onecall?lat='+lat+'&lon='+long+'&units=metric&lang=en&exclude=hourly,minutely&appid=7b876dba81adf23c3ab28f297a4ac7aa'
     axios.get(apiUrlWeather).then((response) => {
-        const DiffDays = getDiffDays('2022-05-26')
-        var weatherDaily = response.data.daily[DiffDays]
-        console.log(weatherDaily)
-        setData(weatherDaily)
+        var weatherDaily = response.data.daily[diff]
+        //console.log(weatherDaily)
+        setWeather(weatherDaily)
 })}
 
-function getDiffDays(otherDate) {
-    const dateNew = new Date(otherDate)
-    let difference = dateNew.getTime() - dateToday.getTime();
+function getEvents(){
+    let startDateWithTime = date.current.value + 'T00:01:00Z'
+    let endDateWithTime = date.current.value + 'T23:59:59Z'
+    console.log(startDateWithTime)
+    console.log(endDateWithTime)
+    const apiUrlTicketmaster = 'https://app.ticketmaster.com/discovery/v2/events.json?city='+location.current.value+'&startDateTime='+startDateWithTime+'&endDateTime='+endDateWithTime+'&apikey=4Kl2lBFXuu3mkGzmE4P6VXRoXqfgar8O'
+    axios.get(apiUrlTicketmaster).then((answer) => {
+        try {
+        const events = answer.data._embedded;
+        console.log(events)
+        setEvent(events)
+        }
+        catch(err){
+            setEvent('empty')
+            console.log('finns inga')
+        }
+    })
+}
+
+
+function getDiffDays(choosenDate) {
+    let convertedDate = new Date(choosenDate)
+    let difference = convertedDate.getTime() - dateToday.getTime();
     var DifferenceInDays = difference / (1000 * 3600 * 24);
     return Math.ceil(DifferenceInDays);
 
@@ -61,22 +71,6 @@ function getDiffDays(otherDate) {
     
     var days = {weekday: 'long', month: 'long', day: 'numeric'};
 
-    /*
-    var renderApiDataForWeek = data.daily
-        ? data && data.daily.map(item =>{
-                return (
-                <React.Fragment key={item}>
-                <div id={item.dt}>
-                <p>{new Date(item.dt * 1000).toLocaleDateString("en", days)}</p>
-                <img src = {`http://openweathermap.org/img/w/${data.current.weather[0].icon}.png`} alt="weather-icon"></img>
-                <p>{item.temp.day.toFixed()}°C</p>
-                <p>{item.weather[0].description}</p>
-                </div>
-                
-                </React.Fragment>
-                )
-            }) : "laddar..."
-            */
     return (
         <>
         <div className="start-page">
@@ -93,21 +87,28 @@ function getDiffDays(otherDate) {
             <label for="start">Start date:</label>
 
             <input type="date" id="date" ref={date}
-                min={dateToday} max={endDate}></input>
+                min={dateToday.toISOString().split('T')[0]} max={endDate.toISOString().split('T')[0]}></input>
             <button type="submit"  >
                 
             </button>
             </form>
             <h3>RESULTAT</h3>
             <div id="location-info">
-                <div id="current-weather">
-                {data.temp ? <p> {data.temp.day.toFixed()}°C</p>:null}
-                {data.weather ?<p>{data.weather[0].description}</p>:null}
-                    {data.clouds}
+                <div id="weather">
+                {weather.temp ? <p> {weather.temp.day.toFixed()}°C</p>:null}
+                {weather.weather ?<p>{weather.weather[0].description}</p>:null}
                 </div>
-
-                <div id="weather-seven-days">
-                <h3>7 dagar frammåt</h3>
+                <div id="event">
+                <h3>Event:</h3>
+                {event.events ? event && event.events.map(item => {
+                    return (
+                        <React.Fragment key={item}>
+                            {item.name ? <p>{item.name} {item.promoter.name}</p>:null}
+                            {item.url ? <a href={item.url}>Book tickets here</a>:null}
+                            {item.images[3].url ? <img src={item.images[3].url} alt="event-poster"></img>:null}
+                        </React.Fragment>
+                    )
+                }):"No events"}
                     
                 </div> 
             </div>
