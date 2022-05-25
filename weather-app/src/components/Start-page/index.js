@@ -33,41 +33,41 @@ const Startpage = () => {
         ? data && data.daily.map(item =>{
                 return (
                 <React.Fragment key={item}>
-                <p>Datum: {new Date(item.dt * 1000).toLocaleDateString("se", days)}</p>
+                <div className="weather-one-day">
+                <p><span className="bolded">Datum: {new Date(item.dt * 1000).toLocaleDateString("se", days)}</span></p>
                 <img src = {`http://openweathermap.org/img/w/${data.current.weather[0].icon}.png`} alt="weather-icon"></img>
                 <p>Temperatur: {item.temp.day}°C</p>
                 <p>{item.weather[0].description}</p>
-                
+                </div>
                 </React.Fragment>
                 )
             }) : "laddar..."
     return (
         <>
         <div className="start-page">
-            <h1>Startpage</h1>
-            <h2>INFO</h2>
+            <h1><span className="bolded">YOUR EVENT AND WEATHER GUIDE</span></h1>
             <p>
-                TEXT MED INFORMATION
+                <span className="info">A tool used for retrieving a seven day weather forcast and upcoming events in an optional city.</span>
             </p>
-            <h3>Ange stad</h3>
+            <h4>Enter city</h4>
             <input type="text" 
             id ="search-field" 
             onChange={event => setLocation(event.target.value)} 
             value={location}
             onKeyUp={searchFunction}
-            placeholder="Sök stad"></input>
+            placeholder="Enter city"></input>
             
-            <h3>RESULTAT</h3>
+            <h3><span className="bolded">Results</span></h3>
             <div id="location-info">
                 <div id="current-weather">
             
                     {data.current ? <img src={`http://openweathermap.org/img/w/${data.current.weather[0].icon}.png`} alt="weather icon"></img>: null}
-                    {data.current ? <p>Temperatur: {data.current.temp}°C</p>: null}
-                    {data.current ? <p>Är just nu: {data.current.weather[0].description}</p>: null}
+                    {data.current ? <p>Temperature: {data.current.temp}°C</p>: null}
+                    {data.current ? <p>Right now: {data.current.weather[0].description}</p>: null}
                 </div>
 
                 <div id="weather-seven-days">
-                <h3>7 dagar frammåt</h3>
+                <h3><span className="bolded">7 day forcast</span></h3>
                     {renderApiDataForWeek}
                 </div> 
             </div>
