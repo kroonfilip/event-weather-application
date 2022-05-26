@@ -99,9 +99,9 @@ function renderEvent(){
 
             <input type="date" id="date" ref={date}
                 min={dateToday.toISOString().split('T')[0]} max={endDate.toISOString().split('T')[0]}></input>
-            <button type="submit" >
+            <input type='submit' value="Search">
                 
-            </button>
+            </input>
             </form>
             <h3 className='bolded'>RESULT</h3>
             <div id="location-info">
