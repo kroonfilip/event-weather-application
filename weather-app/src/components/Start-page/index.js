@@ -71,7 +71,7 @@ function renderEvent(){
     try {
     var renderEvent = event.events ? event.events.map(item => {
         return (
-            <li><p>{item.name}</p><p>{item._embedded.venues[0].name}</p><a src={item.url}>Book here</a>/<img src={item.images[3].url} alt="event-poster"></img></li>
+            <li><p>{item.name}</p><p>{item._embedded.venues[0].name}</p><a href={item.url} target="_blank">Book here</a><img src={item.images[3].url} alt="event-poster"></img></li>
         )
     }):""
     return renderEvent
@@ -95,7 +95,7 @@ function renderEvent(){
             <input type="text" 
             id ="location" ref={location} 
             placeholder="Enter city"></input>
-            <label for="start">Start date:</label>
+            <label for="start">Date:</label>
 
             <input type="date" id="date" ref={date}
                 min={dateToday.toISOString().split('T')[0]} max={endDate.toISOString().split('T')[0]}></input>
