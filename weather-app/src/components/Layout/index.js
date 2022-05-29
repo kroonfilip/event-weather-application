@@ -6,8 +6,8 @@ import Menu from '../Menu';
 const Layout = () => {
   return (
     <>
-      <Header />
       <Menu />
+      <Header />
       <Outlet />
       <Footer />
     </>
