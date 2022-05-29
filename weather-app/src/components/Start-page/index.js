@@ -86,22 +86,29 @@ function renderEvent(){
     return (
         <>
         <div className="start-page">
-            <h1><span className="bolded">YOUR EVENT AND WEATHER GUIDE</span></h1>
+            <h1><span className="bolded">THE EVENT AND WEATHER APP</span></h1>
             <p>
-                <span className="info">A tool used for retrieving a seven day weather forcast and upcoming events in an optional city.</span>
+                <span className="info">A tool used to retrieve a one day weather forecast and upcoming events in any city.</span>
             </p>
-            <h4>Enter city</h4>
             <form action="#" onSubmit={searchFunction}>
-            <input type="text" 
-            id ="location" ref={location} 
-            placeholder="Enter city"></input>
-            <label for="start">Date:</label>
-
-            <input type="date" id="date" ref={date}
-                min={dateToday.toISOString().split('T')[0]} max={endDate.toISOString().split('T')[0]}></input>
-            <input type='submit' value="Search">
-                
-            </input>
+                <div className="search-padding">
+                    <label for="location">Enter city:</label>
+                </div>
+                <div className="search-padding">
+                    <input type="text" 
+                    id ="location" ref={location} 
+                    placeholder="Enter city"></input>
+                </div>
+                <div className="search-padding">
+                    <label for="date">Date:</label>
+                </div>
+                <div className="search-padding">
+                    <input type="date" id="date" ref={date}
+                        min={dateToday.toISOString().split('T')[0]} max={endDate.toISOString().split('T')[0]}></input>
+                </div>
+                <div className="search-padding-button">
+                    <input className="w3-amber w3-button" type='submit' value="Search"/>
+                </div>
             </form>
             <h3 className='bolded'>RESULT</h3>
             <div id="location-info">

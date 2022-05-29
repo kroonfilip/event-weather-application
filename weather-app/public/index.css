@@ -107,6 +107,14 @@ h3 {
     border-bottom: 1px solid black;
 }
 
+.search-padding {
+    padding: 3px;
+}
+
+.search-padding-button {
+    padding-top: 10px;
+}
+
 @media screen and (max-width: 600px) {
     
     #root {
