@@ -72,7 +72,7 @@ function renderEvent(){
     try {
     var renderEvent = event.events ? event.events.map(item => {
         return (
-            <li><img src={item.images[3].url} className="w3-round" alt="event-poster"></img><p>{item.name}</p><p>{item._embedded.venues[0].name}</p><a href={item.url} className="w3-button w3-black w3-hover-white" target="_blank">Book here</a></li>
+            <li><img src={item.images[3].url} className="w3-round" alt="event-poster"></img><p span className="bolded">{item.name}</p><p>Venue: {item._embedded.venues[0].name}</p><a href={item.url} className="w3-button w3-black w3-hover-white" target="_blank">Book here</a></li>
         )
     }):""
     return renderEvent
@@ -111,23 +111,22 @@ function renderEvent(){
                     <input className="w3-amber w3-button" type='submit' value="Search"/>
                 </div>
             </form>
-            <h3>Weather on {date.current.value}</h3>
+            <h3><span className="bolded">Weather</span></h3>
             <div id="location-info">
                 <div id="weather">
-                {weather.weather ? <img src={`http://openweathermap.org/img/w/${weather.weather[0].icon}.png`} alt='weather icon'></img>:null }
-                {weather.temp ? <p id='temp'> {weather.temp.day.toFixed()}°C</p>:null}
-                {weather.weather ?<p id='description'>{weather.weather[0].description}</p>:null}
+                    {date.current ? <p id="chosen-date"> {date.current.value}</p> :null} 
+                    {weather.temp ? <p id='temp'> {weather.temp.day.toFixed()}°C</p>:null}
+                    {weather.temp ? <p id='min-max-temp'> min {weather.temp.min.toFixed()}°C, max {weather.temp.max.toFixed()}°C</p>:null}
+                    {weather.weather ? <div><img src={`http://openweathermap.org/img/w/${weather.weather[0].icon}.png`} alt='weather icon'></img></div>:null }
+                    {weather.weather ?<p id='description'> {weather.weather[0].main} ({weather.weather[0].description})</p>:null}
                 </div>
                 <div id="event">
-                <h3>Event:</h3>
-                <ul className="w3-ul w3-border">
-                {renderEvent()}
-                </ul>
-                    
+                    <h3><span className="bolded">Events</span></h3>
+                    <ul className="w3-ul w3-border">
+                        {renderEvent()}
+                    </ul>
                 </div> 
             </div>
-                
-                
         </div>
         
         </>

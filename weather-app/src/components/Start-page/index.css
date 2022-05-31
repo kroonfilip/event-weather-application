@@ -1,24 +1,45 @@
 ul > li > img {
     float: left;
-    height: 130px;
-    padding-right: 1%;
+    width:100%;
+    max-width:300px;
+    margin-right: 1%;
     justify-content: center;
+    border: 1px solid grey;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 ul > li > a {
     float: right;
-    
-
 }
+
 li {
    display: flow-root;
 }
 
-#weather > img {
-    display: inline;
+#weather {
+    padding: 10px;
+    background-color: #daeff8;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+
+#weather > div > img {
+    width:100%;
+    max-width:100px;
 }
 
 #temp {
+    display: block;
+    font-size: 26px;
+    font-weight: bold;
+}
+
+#description {
     display: inline;
+}
+
+#chosen-date {
+    display: inline;
+    font-size: 16px;
+    font-weight: bold;
 }
 
 
