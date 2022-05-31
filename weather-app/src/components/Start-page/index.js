@@ -1,4 +1,4 @@
-import React, {useState, useRef} from 'react'
+import React, {useState, useRef, useEffect} from 'react'
 import axios from 'axios'
 import {Route, Link} from 'react-router-dom'
 
@@ -8,6 +8,8 @@ const Startpage = () => {
     const [event, setEvent] = useState([]) 
     const location = useRef()
     const date = useRef()
+    const eventRef = useRef()
+    const [save, setSave] = useState('')
     
     const dateToday = new Date()
 
@@ -19,13 +21,14 @@ const Startpage = () => {
         e.preventDefault()
         if (location.current.value !=="" && date.current.value !== ""){
             let diffDays = getDiffDays(date.current.value)
-            const apiUrlGeoLocation = 'http://api.openweathermap.org/geo/1.0/direct?q='+location.current.value+'&appid='
+            const apiUrlGeoLocation = 'http://api.openweathermap.org/geo/1.0/direct?q='+location.current.value+'&appid=bcea789825d8474a842b9612811b70e3'
             axios.get(apiUrlGeoLocation).then((response) => {
                 var lat = response.data[0].lat
                 var long = response.data[0].lon
                 getWeather(lat, long, diffDays)  
             })
             getEvents()
+            
             
 
         } else {
@@ -34,7 +37,7 @@ const Startpage = () => {
 }
 
 function getWeather(lat, long, diff) {
-    const apiUrlWeather = 'https://api.openweathermap.org/data/3.0/onecall?lat='+lat+'&lon='+long+'&units=metric&lang=en&exclude=hourly,minutely&appid='
+    const apiUrlWeather = 'https://api.openweathermap.org/data/3.0/onecall?lat='+lat+'&lon='+long+'&units=metric&lang=en&exclude=hourly,minutely&appid=7b876dba81adf23c3ab28f297a4ac7aa'
     axios.get(apiUrlWeather).then((response) => {
         var weatherDaily = response.data.daily[diff]
         setWeather(weatherDaily)
@@ -44,7 +47,7 @@ function getWeather(lat, long, diff) {
 function getEvents(){
     let startDateWithTime = date.current.value + 'T00:01:00Z'
     let endDateWithTime = date.current.value + 'T23:59:59Z'
-    const apiUrlTicketmaster = 'https://app.ticketmaster.com/discovery/v2/events.json?city='+location.current.value+'&startDateTime='+startDateWithTime+'&endDateTime='+endDateWithTime+'&apikey='
+    const apiUrlTicketmaster = 'https://app.ticketmaster.com/discovery/v2/events.json?city='+location.current.value+'&startDateTime='+startDateWithTime+'&endDateTime='+endDateWithTime+'&apikey=4Kl2lBFXuu3mkGzmE4P6VXRoXqfgar8O'
     axios.get(apiUrlTicketmaster).then((answer) => {
         try {
         var events = answer.data._embedded;
@@ -71,17 +74,52 @@ function renderEvent(){
     try {
     var renderEvent = event.events ? event.events.map(item => {
         return (
-            <li><p>{item.name}</p><p>{item._embedded.venues[0].name}</p><a href={item.url} target="_blank">Book here</a><img src={item.images[3].url} alt="event-poster"></img></li>
+            <li>
+                <h3>Save to Favorites</h3>
+                <input type="button" value={item.name}
+                onClick={(e) =>{setSave([...save,{
+                    date:date.current.value,
+                    location:location.current.value,
+                    event:item.name,
+                    link: item.url}])}} >
+
+                </input>
+                <p>{item.name}</p>
+                <p>{item._embedded.venues[0].name}</p>
+                <a href={item.url} target="_blank">Book here</a>
+                <img src={item.images[3].url} alt="event-poster"></img>
+                </li>
         )
     }):""
+    console.log(eventRef)
     return renderEvent
+   
     }catch(err) {
         return (
             <li>No events on {date.current.value}</li>
         )
     }
 
-}   
+}  
+
+/*
+function handleSubmit() {
+   var test= event.events ? event.events.map(item => {
+    setSave([...save,{
+        date:date.current.value,
+        location:location.current.value,
+        event:item.name,
+        link: item.url}])
+    }):null 
+}
+*/
+useEffect(() => {
+    localStorage.setItem('save', JSON.stringify(save))
+}, [save])
+
+
+
+
 
     return (
         <>
@@ -99,6 +137,7 @@ function renderEvent(){
                     id ="location" ref={location} 
                     placeholder="Enter city"></input>
                 </div>
+                
                 <div className="search-padding">
                     <label for="date">Date:</label>
                 </div>
