@@ -1,6 +1,7 @@
-import React, {useState, useRef} from 'react'
-import axios from 'axios'
-import {Route, Link} from 'react-router-dom'
+import React, {useState, useRef} from 'react';
+import axios from 'axios';
+import {Route, Link} from 'react-router-dom';
+import './index.css';
 
 const Startpage = () => {
     
@@ -71,7 +72,7 @@ function renderEvent(){
     try {
     var renderEvent = event.events ? event.events.map(item => {
         return (
-            <li><p>{item.name}</p><p>{item._embedded.venues[0].name}</p><a href={item.url} target="_blank">Book here</a><img src={item.images[3].url} alt="event-poster"></img></li>
+            <li><img src={item.images[3].url} className="w3-round" alt="event-poster"></img><p>{item.name}</p><p>{item._embedded.venues[0].name}</p><a href={item.url} className="w3-button w3-black w3-hover-white" target="_blank">Book here</a></li>
         )
     }):""
     return renderEvent
@@ -110,16 +111,16 @@ function renderEvent(){
                     <input className="w3-amber w3-button" type='submit' value="Search"/>
                 </div>
             </form>
-            <h3 className='bolded'>RESULT</h3>
+            <h3>Weather on {date.current.value}</h3>
             <div id="location-info">
                 <div id="weather">
                 {weather.weather ? <img src={`http://openweathermap.org/img/w/${weather.weather[0].icon}.png`} alt='weather icon'></img>:null }
-                {weather.temp ? <p> {weather.temp.day.toFixed()}°C</p>:null}
-                {weather.weather ?<p>{weather.weather[0].description}</p>:null}
+                {weather.temp ? <p id='temp'> {weather.temp.day.toFixed()}°C</p>:null}
+                {weather.weather ?<p id='description'>{weather.weather[0].description}</p>:null}
                 </div>
                 <div id="event">
                 <h3>Event:</h3>
-                <ul className='list-of-events'>
+                <ul className="w3-ul w3-border">
                 {renderEvent()}
                 </ul>
                     
