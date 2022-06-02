@@ -103,7 +103,7 @@ function setsEvents(){
     let endDateWithTime = date.current.value + 'T23:59:59Z';
     
     //The Ticketmaster URL:
-    const apiUrlTicketmaster = 'https://app.ticketmaster.com/discovery/v2/events.json?city='+location.current.value+'&startDateTime='+startDateWithTime+'&endDateTime='+endDateWithTime+'&apikey=';
+    const apiUrlTicketmaster = 'https://app.ticketmaster.com/discovery/v2/events.json?city='+location.current.value+'&';
 
     axios.get(apiUrlTicketmaster).then((answer) => { //Does the API call. 
         try { //Tries to set events
@@ -128,8 +128,10 @@ function renderEvent(){   //<---- SAKNAR KOMMENTARER!
         return (
             <li>
                 
-                <input type="image" src="fav-star.png" className="save-button" value="Save"
-                onClick={() =>{notify(); setSave([...save,{
+                <input type="image" src="like.png" className="save-button" value="Save" 
+                onMouseOver = {e => e.currentTarget.src = 'like-filled.png'} 
+                onMouseLeave = {e => e.currentTarget.src = 'like.png'}
+                onClick = {e =>{notify(); setSave([...save,{
                     id: newId,
                     date:date.current.value,
                     location:location.current.value,
@@ -230,4 +232,4 @@ const getLocalItems = () => {
         
     )
 } 
-export default Startpage;
+export default Startpage

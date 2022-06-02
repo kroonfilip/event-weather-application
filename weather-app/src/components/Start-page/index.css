@@ -48,7 +48,3 @@ li {
     margin: 2px;
     padding-left: 2px;
 }
-
-input[type="image"].save-button:hover {
-    background-color: darkgoldenrod;
-}
