@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { useRef } from 'react'
+import { useRef } from 'react';
 
 const Menu = () => {
     

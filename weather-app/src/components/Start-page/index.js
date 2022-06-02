@@ -1,77 +1,118 @@
 import React, {useState, useRef, useEffect} from 'react';
 import axios from 'axios';
-import {Route, Link} from 'react-router-dom';
 import './index.css';
 
 const Startpage = () => {
     
-    const [weather, setWeather] = useState([])
-    const [event, setEvent] = useState([]) 
-    const location = useRef()
-    const date = useRef()
-    const eventRef = useRef()
-    const [save, setSave] = useState('')
+    const [weather, setWeather] = useState([]); 
+    const [event, setEvent] = useState([]);
+    const location = useRef();
+    const date = useRef();
+    const eventRef = useRef();
+    const [save, setSave] = useState('');
     
-    const dateToday = new Date()
+    const dateToday = new Date(); //get's today's date.
 
-    const endDate = new Date()
-    endDate.setDate(endDate.getDate() + 7);
+    const endDate = new Date();
+    endDate.setDate(endDate.getDate() + 7); //get's the date in 7 days from today 
 
 
     const searchFunction = (e) => {
-        e.preventDefault()
-        if (location.current.value !=="" && date.current.value !== ""){
-            let diffDays = getDiffDays(date.current.value)
-            const apiUrlGeoLocation = 'http://api.openweathermap.org/geo/1.0/direct?q='+location.current.value+'&appid='
-            axios.get(apiUrlGeoLocation).then((response) => {
-                var lat = response.data[0].lat
-                var long = response.data[0].lon
-                getWeather(lat, long, diffDays)  
-            })
-            getEvents()
-            
-            
-
-        } else {
-            alert("You need to give location and date to be able to get events!")
+        /*
+        The code below is the code that runs when the user is submitting 
+        the form on startpage.
+        The funcion is both handeling so that it is correct input and 
+        then calls different functions that calls API:er to get correct data. 
+        */
+        e.preventDefault();
+        //Checks that both location and date is filled in:
+        if (location.current.value !=="" && date.current.value !== ""){ 
+            let diffDays = getDiffDays(date.current.value); //get's the diffdays
+            getCoords(diffDays);
+            setsEvents();
+        //if the user did not fill in the form correct:    
+        } else{
+            alert("You need to give location and date to be able to get events!");
         }
-}
-
-function getWeather(lat, long, diff) {
-    const apiUrlWeather = 'https://api.openweathermap.org/data/3.0/onecall?lat='+lat+'&lon='+long+'&units=metric&lang=en&exclude=hourly,minutely&appid='
-    axios.get(apiUrlWeather).then((response) => {
-        var weatherDaily = response.data.daily[diff]
-        setWeather(weatherDaily)
-        console.log(weatherDaily)
-})}
-
-function getEvents(){
-    let startDateWithTime = date.current.value + 'T00:01:00Z'
-    let endDateWithTime = date.current.value + 'T23:59:59Z'
-    const apiUrlTicketmaster = 'https://app.ticketmaster.com/discovery/v2/events.json?city='+location.current.value+'&startDateTime='+startDateWithTime+'&endDateTime='+endDateWithTime+'&apikey='
-    axios.get(apiUrlTicketmaster).then((answer) => {
-        try {
-        var events = answer.data._embedded;
-        console.log('I getEvents:')
-        console.log(events)
-        setEvent(events)
-        
-        }
-        catch(err){
-        }
-    })
-}
-
+};
 
 function getDiffDays(choosenDate) {
-    let convertedDate = new Date(choosenDate)
-    let difference = convertedDate.getTime() - dateToday.getTime();
+    /*
+    The funtions takes the users choosen date as a parameter. 
+    The code below does then convert the date to ISO format. 
+    Then it count's how many days it diffs from todays date and 
+    returns that number of days. 
+    */
+    let convertedDate = new Date(choosenDate); //converts choosen date to ISO format. 
+    let difference = convertedDate.getTime() - dateToday.getTime(); 
     var DifferenceInDays = difference / (1000 * 3600 * 24);
     return Math.ceil(DifferenceInDays);
 
-}
+};
+
+
+function getCoords(diffDays) {
+    /*
+    The functions takes the diffdays so that it can send in that parameter to setsWeather. 
+    The code below is calling the GeoLocation API and takes out both lat and long from the response.
+    Then it calls the setWeather functions.  
+    */
+
+    //The Geolocation API URL:
+    const apiUrlGeoLocation = 'http://api.openweathermap.org/geo/1.0/direct?q='+location.current.value+'&appid=bcea789825d8474a842b9612811b70e3';
+
+    axios.get(apiUrlGeoLocation).then((response) => { //Does the call and handles the response
+        let lat = response.data[0].lat;
+        let long =  response.data[0].lon;
+        setsWeather(lat, long, diffDays); 
+    })
+};
+
+
+function setsWeather(lat, long, diff) {
+    /*
+    The functions takes three parameter: lat, long and the diff from todays
+    date and the choosen date (that it got from function getDiffDays)
+    The code below calls the one call weather API and then takes out the 
+    the correct weather from the response and set's the weather variable.  
+    */
+
+    //One call weather API url:
+    const apiUrlWeather = 'https://api.openweathermap.org/data/3.0/onecall?lat='+lat+'&lon='+long+'&units=metric&lang=en&exclude=hourly,minutely&appid=7b876dba81adf23c3ab28f297a4ac7aa';
+
+    axios.get(apiUrlWeather).then((response) => { //Does the API call and handles the response.
+        var weatherDaily = response.data.daily[diff];
+        setWeather(weatherDaily); //Set's the weather variable. 
+})}
+
+function setsEvents(){
+    /*
+    The code below calls the Ticketmaster API and then set's
+    the event variable with correct data. 
+    */
+    //Add's the time to the date so it is in correct format:
+    let startDateWithTime = date.current.value + 'T00:01:00Z';
+    let endDateWithTime = date.current.value + 'T23:59:59Z';
+    
+    //The Ticketmaster URL:
+    const apiUrlTicketmaster = 'https://app.ticketmaster.com/discovery/v2/events.json?city='+location.current.value+'&startDateTime='+startDateWithTime+'&endDateTime='+endDateWithTime+'&apikey=4Kl2lBFXuu3mkGzmE4P6VXRoXqfgar8O';
+
+    axios.get(apiUrlTicketmaster).then((answer) => { //Does the API call. 
+        try { //Tries to set events
+        var events = answer.data._embedded;
+        setEvent(events); //set's events variable. 
+        
+        }
+        catch(err){ //if error stop's the try. 
+        }
+    })
+};
    
-function renderEvent(){
+function renderEvent(){   //<---- SAKNAR KOMMENTARER!
+    /*
+    The code below renders the event. 
+    */
+
     try {
     var renderEvent = event.events ? event.events.map(item => {
         return (
@@ -92,7 +133,6 @@ function renderEvent(){
             </li>
         )
     }):""
-    console.log(eventRef)
     return renderEvent
    
     }catch(err) {
@@ -103,17 +143,6 @@ function renderEvent(){
 
 }  
 
-/*
-function handleSubmit() {
-   var test= event.events ? event.events.map(item => {
-    setSave([...save,{
-        date:date.current.value,
-        location:location.current.value,
-        event:item.name,
-        link: item.url}])
-    }):null 
-}
-*/
 useEffect(() => {
     localStorage.setItem('save', JSON.stringify(save))
 }, [save])
