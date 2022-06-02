@@ -43,4 +43,14 @@ li {
     font-weight: bold;
 }
 
+.save-button {
+    float: right;
+    width: 45px;
+    border: 1px solid black;
+    margin: 2px;
+}
 
+input[type="image"].save-button:hover {
+    background-color: #fff;
+    border: 1px solid black;
+}

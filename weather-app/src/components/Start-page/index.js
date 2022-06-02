@@ -117,7 +117,7 @@ function renderEvent(){   //<---- SAKNAR KOMMENTARER!
         return (
             <li>
                 
-                <input type="button" value="Save"
+                <input type="image" src="fav-star.png" className="save-button" value="Save"
                 onClick={(e) =>{setSave([...save,{
                     date:date.current.value,
                     location:location.current.value,
