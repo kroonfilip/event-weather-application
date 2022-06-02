@@ -2,10 +2,10 @@
 This React App is developed by three students as a part of the university course *Multi-platform applications with web technologies* 
 
 ## Project
-We have developed an event and weather application. With the help of this website a user can search for and store the weather forecast and upcoming events i any searchable city for the next 7 days.
+We have developed an event and weather application. With the help of this website a user can enter a date and a city and the application will return a weather forcast for that specific date and a list of the planned events on that same day. The user can receive up to 20 events. Users can save events which are then added to a favorites list.
 
 ## API
-We have used two external APIs:
+This website uses external APIs from:
 
 * https://openweathermap.org/api
 
