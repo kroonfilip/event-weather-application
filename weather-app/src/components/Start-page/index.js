@@ -8,7 +8,7 @@ const Startpage = () => {
     const [event, setEvent] = useState([]);
     const location = useRef();
     const date = useRef();
-    const [save, setSave] = useState('');
+    const [save, setSave] = useState([]);
     
     const dateToday = new Date(); //get's today's date.
 
