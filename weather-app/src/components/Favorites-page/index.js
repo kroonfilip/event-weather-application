@@ -1,5 +1,5 @@
-
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Favorites = () => {
     
@@ -19,6 +19,7 @@ const Favorites = () => {
     
         }
        */
+        const notify = () => toast.info("Event removed from favorites!");
         const removeItem = (e, event) => {
             
             JSON.parse(localStorage.getItem('save')).filter(d => d !== event)
@@ -37,7 +38,8 @@ const Favorites = () => {
                     <p>{item.location}</p>
                     <p>{item.event}</p>
                     <a href={item.link} target="_blank">Book here</a>
-                    <input type="button" value="delete" onClick={e =>removeItem(e,item)}></input>
+                    <input type="button" value="delete" onClick={e =>{removeItem(e,item); notify()}}></input>
+                    <ToastContainer/>
                   
                    
                 </li>
