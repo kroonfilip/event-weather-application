@@ -21,16 +21,16 @@ const Menu = () => {
                     <span className="w3-right">
                         <Link to="/" className="w3-bar-item w3-button w3-hide-small w3-hover-amber">Home</Link>
                         <Link to="/favorites" className="w3-bar-item w3-button w3-hide-small w3-hover-amber">Favorites</Link>
-                        <a className="w3-bar-item w3-button w3-hide-small w3-hover-amber">About</a>
-                        <a className="w3-bar-item w3-button w3-hide-small w3-hover-amber">Contact</a>
+                        <Link to="/about" className="w3-bar-item w3-button w3-hide-small w3-hover-amber">About</Link>
+                        <Link to="/contact" className="w3-bar-item w3-button w3-hide-small w3-hover-amber">Contact</Link>
                     </span>
                 </div>
 
                 <div id="navDemo" className="w3-bar-block w3-theme-d2 w3-hide w3-hide-large w3-hide-medium w3-amber" ref={menuRef}>
                     <Link to="/" className="w3-bar-item w3-button w3-hover-amber">Home</Link>
                     <Link to="/favorites" className="w3-bar-item w3-button w3-hover-amber">Favorites</Link>
-                    <a className="w3-bar-item w3-button w3-hover-amber">About</a>
-                    <a className="w3-bar-item w3-button w3-hover-amber">Contact</a>
+                    <Link to="/about" className="w3-bar-item w3-button w3-hover-amber">About</Link>
+                    <Link to="/contact" className="w3-bar-item w3-button w3-hover-amber">Contact</Link>
                 </div>
             </div>
         </nav>
