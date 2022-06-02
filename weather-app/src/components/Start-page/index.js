@@ -1,6 +1,8 @@
 import React, {useState, useRef, useEffect} from 'react';
 import axios from 'axios';
 import './index.css';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Startpage = () => {
     
@@ -114,6 +116,7 @@ function setsEvents(){
     })
 };
 const newId = save.length > 0 ? save[save.length - 1].id + 1: 1;
+const notify = () => toast.success("Added to favorites!");
 
 function renderEvent(){   //<---- SAKNAR KOMMENTARER!
     /*
@@ -126,7 +129,7 @@ function renderEvent(){   //<---- SAKNAR KOMMENTARER!
             <li>
                 
                 <input type="image" src="fav-star.png" className="save-button" value="Save"
-                onClick={(e) =>{setSave([...save,{
+                onClick={() =>{notify(); setSave([...save,{
                     id: newId,
                     date:date.current.value,
                     location:location.current.value,
@@ -134,6 +137,7 @@ function renderEvent(){   //<---- SAKNAR KOMMENTARER!
                     link: item.url}])}} >
 
                 </input>
+                <ToastContainer/>
                 <img src={item.images[3].url} className="w3-round" alt="event-poster"></img>
                 <p span className="bolded">{item.name}</p>
                 <p>Venue: {item._embedded.venues[0].name}</p>
