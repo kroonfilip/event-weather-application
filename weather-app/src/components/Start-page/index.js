@@ -8,7 +8,6 @@ const Startpage = () => {
     const [event, setEvent] = useState([]);
     const location = useRef();
     const date = useRef();
-    const eventRef = useRef(); //Används denna????
     const [save, setSave] = useState('');
     
     const dateToday = new Date(); //get's today's date.
@@ -129,7 +128,7 @@ function renderEvent(){   //<---- SAKNAR KOMMENTARER!
                 <img src={item.images[3].url} className="w3-round" alt="event-poster"></img>
                 <p span className="bolded">{item.name}</p>
                 <p>Venue: {item._embedded.venues[0].name}</p>
-                <a href={item.url} className="w3-button w3-black w3-hover-white" target="_blank">Book here</a>
+                <a href={item.url} className="w3-button w3-black w3-hover-white" target="_blank" rel="noreferrer">Book here</a>
             </li>
         )
     }):""
