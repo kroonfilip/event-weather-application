@@ -1,57 +1,55 @@
 
-
+import React, {useState} from 'react';
 
 const Favorites = () => {
-    
-    
-    const savedItem = JSON.parse(localStorage.getItem('save'))
-/*
-    const removeFav = (event) =>  {
-    const oldSave = JSON.parse(localStorage.getItem('save'));
 
-   
-    const newSave = oldSave.filter(({ event: x }) => x === event);
-
+    const [eventItems, SetEventItems] = useState(JSON.parse(localStorage.getItem('save')))
     
     
     
-    localStorage.setItem('save', JSON.stringify(newSave));
     
-        }
-       */
-        const removeItem = (e, event) => {
-            
-            JSON.parse(localStorage.getItem('save')).filter(d => d !== event)
-            
-                let array = JSON.parse(localStorage.getItem("save"))
-                array.splice(array.indexOf(event), 1)
-                localStorage.setItem("save", JSON.stringify(array));
-          };
-    
+    function printFavorites() {
         
-        var printItems = savedItem.map(item => {
+        
+        var printItems = eventItems.map((item) => {
             return (
-                <li>
-                    
+                <li key={item.id}>
                     <p>{item.date}</p>
                     <p>{item.location}</p>
                     <p>{item.event}</p>
                     <a href={item.link} target="_blank">Book here</a>
-                    <input type="button" value="delete" onClick={e =>removeItem(e,item)}></input>
-                  
-                   
+                    <input type="button" value="delete" onClick={(e) =>removeItem(e, item.id)}></input>
+                
+                
                 </li>
             )
+        
         })
+        return printItems
+    
+}
 
+
+
+function removeItem(e, id) {
+    
+    var eventFilter = eventItems.filter(function(item){
+        return id !== item.id
+    })
+    localStorage.setItem('save', JSON.stringify(eventFilter))
+    SetEventItems(eventFilter)
+}
        
-    return (
+        
+    
+  
+         return (
         <div className="favorites">
             <h1>Favorites</h1>
             <h3>RESULTAT</h3>
             <ul id="saved-list">
                 
-                <p>{printItems}</p>
+                <p>{printFavorites()}</p>
             </ul>
         </div>
     )

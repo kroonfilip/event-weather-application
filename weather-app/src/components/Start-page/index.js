@@ -8,6 +8,7 @@ const Startpage = () => {
     const [event, setEvent] = useState([]);
     const location = useRef();
     const date = useRef();
+    
     const [save, setSave] = useState([]);
     
     const dateToday = new Date(); //get's today's date.
@@ -112,12 +113,13 @@ function setsEvents(){
         }
     })
 };
-   
+const newId = save.length > 0 ? save[save.length - 1].id + 1: 1;
+
 function renderEvent(){   //<---- SAKNAR KOMMENTARER!
     /*
     The code below renders the event. 
     */
-
+    
     try {
     var renderEvent = event.events ? event.events.map(item => {
         return (
@@ -125,7 +127,7 @@ function renderEvent(){   //<---- SAKNAR KOMMENTARER!
                 
                 <input type="image" src="fav-star.png" className="save-button" value="Save"
                 onClick={(e) =>{setSave([...save,{
-                    
+                    id: newId,
                     date:date.current.value,
                     location:location.current.value,
                     event:item.name,
