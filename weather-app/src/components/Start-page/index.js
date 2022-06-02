@@ -61,9 +61,12 @@ function getCoords(diffDays) {
     const apiUrlGeoLocation = 'http://api.openweathermap.org/geo/1.0/direct?q='+location.current.value+'&appid=';
 
     axios.get(apiUrlGeoLocation).then((response) => { //Does the call and handles the response
-        let lat = response.data[0].lat;
-        let long =  response.data[0].lon;
-        setsWeather(lat, long, diffDays); 
+        try {
+            let lat = response.data[0].lat;
+            let long =  response.data[0].lon;
+            setsWeather(lat, long, diffDays); 
+        }catch {
+        }
     })
 };
 
@@ -80,8 +83,11 @@ function setsWeather(lat, long, diff) {
     const apiUrlWeather = 'https://api.openweathermap.org/data/3.0/onecall?lat='+lat+'&lon='+long+'&units=metric&lang=en&exclude=hourly,minutely&appid=';
 
     axios.get(apiUrlWeather).then((response) => { //Does the API call and handles the response.
-        var weatherDaily = response.data.daily[diff];
-        setWeather(weatherDaily); //Set's the weather variable. 
+        try {
+            var weatherDaily = response.data.daily[diff];
+            setWeather(weatherDaily); //Set's the weather variable. 
+        }catch(err) {
+        }
 })}
 
 function setsEvents(){
