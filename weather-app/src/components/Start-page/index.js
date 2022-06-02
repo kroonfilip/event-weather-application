@@ -10,7 +10,7 @@ const Startpage = () => {
     const location = useRef()
     const date = useRef()
     const eventRef = useRef()
-    const [save, setSave] = useState('')
+    const [save, setSave] = useState([])
     
     const dateToday = new Date()
 
@@ -22,7 +22,7 @@ const Startpage = () => {
         e.preventDefault()
         if (location.current.value !=="" && date.current.value !== ""){
             let diffDays = getDiffDays(date.current.value)
-            const apiUrlGeoLocation = 'http://api.openweathermap.org/geo/1.0/direct?q='+location.current.value+'&appid='
+            const apiUrlGeoLocation = 'http://api.openweathermap.org/geo/1.0/direct?q='+location.current.value+'&appid=bcea789825d8474a842b9612811b70e3'
             axios.get(apiUrlGeoLocation).then((response) => {
                 var lat = response.data[0].lat
                 var long = response.data[0].lon
@@ -38,7 +38,7 @@ const Startpage = () => {
 }
 
 function getWeather(lat, long, diff) {
-    const apiUrlWeather = 'https://api.openweathermap.org/data/3.0/onecall?lat='+lat+'&lon='+long+'&units=metric&lang=en&exclude=hourly,minutely&appid='
+    const apiUrlWeather = 'https://api.openweathermap.org/data/3.0/onecall?lat='+lat+'&lon='+long+'&units=metric&lang=en&exclude=hourly,minutely&appid=7b876dba81adf23c3ab28f297a4ac7aa'
     axios.get(apiUrlWeather).then((response) => {
         var weatherDaily = response.data.daily[diff]
         setWeather(weatherDaily)
@@ -48,7 +48,7 @@ function getWeather(lat, long, diff) {
 function getEvents(){
     let startDateWithTime = date.current.value + 'T00:01:00Z'
     let endDateWithTime = date.current.value + 'T23:59:59Z'
-    const apiUrlTicketmaster = 'https://app.ticketmaster.com/discovery/v2/events.json?city='+location.current.value+'&startDateTime='+startDateWithTime+'&endDateTime='+endDateWithTime+'&apikey='
+    const apiUrlTicketmaster = 'https://app.ticketmaster.com/discovery/v2/events.json?city='+location.current.value+'&startDateTime='+startDateWithTime+'&endDateTime='+endDateWithTime+'&apikey=4Kl2lBFXuu3mkGzmE4P6VXRoXqfgar8O'
     axios.get(apiUrlTicketmaster).then((answer) => {
         try {
         var events = answer.data._embedded;
@@ -79,6 +79,7 @@ function renderEvent(){
                 
                 <input type="button" value="Save"
                 onClick={(e) =>{setSave([...save,{
+                    
                     date:date.current.value,
                     location:location.current.value,
                     event:item.name,
@@ -92,7 +93,7 @@ function renderEvent(){
             </li>
         )
     }):""
-    console.log(eventRef)
+    
     return renderEvent
    
     }catch(err) {
@@ -103,23 +104,34 @@ function renderEvent(){
 
 }  
 
-/*
-function handleSubmit() {
-   var test= event.events ? event.events.map(item => {
-    setSave([...save,{
-        date:date.current.value,
-        location:location.current.value,
-        event:item.name,
-        link: item.url}])
-    }):null 
-}
-*/
+
+
+
+
+
 useEffect(() => {
-    localStorage.setItem('save', JSON.stringify(save))
+    saveLocalItems()
+    
 }, [save])
 
 
+useEffect(() => {
+    getLocalItems()
+  }, []);
 
+  const saveLocalItems = () => {
+    if(save.length!== 0){       
+      localStorage.setItem('save', JSON.stringify(save))
+    }   
+    }
+const getLocalItems = () => {
+    if(localStorage.getItem('save') === null){
+        localStorage.setItem('save', JSON.stringify([]));
+    }else {
+        let saveLocal = JSON.parse(localStorage.getItem('save'));
+        setSave(saveLocal)
+    }
+    }
 
 
     return (
