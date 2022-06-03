@@ -23,12 +23,13 @@ const Favorites = () => {
                     <p>{item.event}</p>
                     <a href={item.link} target="_blank">Book here</a>
                     <input type="button" value="delete" onClick={e =>{removeItem(e,item.id); notify()}}></input>
-                    <ToastContainer/>
-                </li>
-            )
-        })
-        return printItems
-    }
+                    </li>
+                )
+            })
+        
+            return printItems
+        }
+    
 
 
 
@@ -51,6 +52,7 @@ const Favorites = () => {
             <ul id="saved-list">
                 <p>{printFavorites()}</p>
             </ul>
+            <ToastContainer/>
         </div>
     )
 }
