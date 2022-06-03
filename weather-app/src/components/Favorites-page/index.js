@@ -51,7 +51,7 @@ const Favorites = () => {
             <h1 className='w3-center'>Favorites</h1>
             <h3>Your saved events:</h3>
             <ul id="saved-list">
-                <p>{printFavorites()}</p>
+                {printFavorites()}
             </ul>
             <ToastContainer/>
         </div>
