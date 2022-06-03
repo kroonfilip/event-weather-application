@@ -43,8 +43,8 @@ function removeItem(e, id) {
        
          return (
         <div className="favorites">
-            <h1>Favorites</h1>
-            <h3>RESULTAT</h3>
+            <h1 className='w3-center'>Favorites</h1>
+            <h3 className='w3-center'>Your favorites</h3>
             <ul id="saved-list">
                 
                 <p>{printFavorites()}</p>

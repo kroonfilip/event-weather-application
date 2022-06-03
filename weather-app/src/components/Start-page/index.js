@@ -185,7 +185,7 @@ const getLocalItems = () => {
     return (
         <>
         <div className="start-page">
-            <h1><span className="bolded">THE EVENT AND WEATHER APP</span></h1>
+            <h1 className='w3-center'><span className="bolded">THE EVENT AND WEATHER APP</span></h1>
             <p>
                 <span className="info">A tool used to retrieve a one day weather forecast and upcoming events in any city.</span>
             </p>
