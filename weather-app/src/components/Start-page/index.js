@@ -61,7 +61,7 @@ function getCoords(diffDays) {
     */
 
     //The Geolocation API URL:
-    const apiUrlGeoLocation = 'http://api.openweathermap.org/geo/1.0/direct?q='+location.current.value+'&appid=bcea789825d8474a842b9612811b70e3';
+    const apiUrlGeoLocation = 'http://api.openweathermap.org/geo/1.0/direct?q='+location.current.value+'&appid=';
 
     axios.get(apiUrlGeoLocation).then((response) => { //Does the call and handles the response
         try {
@@ -83,7 +83,7 @@ function setsWeather(lat, long, diff) {
     */
 
     //One call weather API url:
-    const apiUrlWeather = 'https://api.openweathermap.org/data/3.0/onecall?lat='+lat+'&lon='+long+'&units=metric&lang=en&exclude=hourly,minutely&appid=7b876dba81adf23c3ab28f297a4ac7aa';
+    const apiUrlWeather = 'https://api.openweathermap.org/data/3.0/onecall?lat='+lat+'&lon='+long+'&units=metric&lang=en&exclude=hourly,minutely&appid=';
 
     axios.get(apiUrlWeather).then((response) => { //Does the API call and handles the response.
         try {
@@ -103,7 +103,7 @@ function setsEvents(){
     let endDateWithTime = date.current.value + 'T23:59:59Z';
     
     //The Ticketmaster URL:
-    const apiUrlTicketmaster = 'https://app.ticketmaster.com/discovery/v2/events.json?city='+location.current.value+'&startDateTime='+startDateWithTime+'&endDateTime='+endDateWithTime+'&apikey=4Kl2lBFXuu3mkGzmE4P6VXRoXqfgar8O';
+    const apiUrlTicketmaster = 'https://app.ticketmaster.com/discovery/v2/events.json?city='+location.current.value+'&startDateTime='+startDateWithTime+'&endDateTime='+endDateWithTime+'&apikey=';
 
     axios.get(apiUrlTicketmaster).then((answer) => { //Does the API call. 
         try { //Tries to set events
@@ -127,9 +127,9 @@ function renderEvent(){
     */
     
     try {
-    var renderEvent = event.events ? event.events.map(item => {
+    var renderEvent = event.events ? event.events.map((item,index) => {
         return (
-            <li>
+            <li key={index}>
                 
                 <input type="image" alt='save' src="like.png" className="save-button" value="Save" 
                 onMouseOver = {e => e.currentTarget.src = 'like-filled.png'} 
@@ -140,11 +140,12 @@ function renderEvent(){
                     location:location.current.value,
                     event:item.name,
                     link: item.url,
-                    img: item.images[3].url}])}} >
+                    img: item.images[3].url,
+                    venue: item._embedded.venues[0].name}])}} >
                 </input>
                 
                 <img src={item.images[3].url} className="w3-round" alt="event-poster"></img>
-                <p span className="bolded">{item.name}</p>
+                <p span="true" className="bolded">{item.name}</p>
                 <p>Venue: {item._embedded.venues[0].name}</p>
                 <a href={item.url} className="w3-button w3-black w3-hover-white" target="_blank" rel="noreferrer">Book here</a>
             </li>

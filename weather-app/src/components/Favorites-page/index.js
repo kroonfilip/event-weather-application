@@ -22,6 +22,7 @@ const Favorites = () => {
                     <p>{item.location}</p>
                     <img src={item.img} className="w3-round" alt="event-poster"></img>
                     <p>{item.event}</p>
+                    <p>{item.venue}</p>
                     <a href={item.link} target="_blank" rel='noreferrer' className="w3-button w3-black w3-hover-white" >Book here</a>
                     <input type="image" className="bin" alt='Delete' src='bin-closed.png' value="Delete"
                     onMouseOver = {e => e.currentTarget.src = 'bin-open.png'} 
