@@ -1,0 +1,16 @@
+.favorites * img {
+    float: left;
+    width:100%;
+    max-width:300px;
+    margin-right: 1%;
+    justify-content: center;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+ul > li > a {
+    float: right;
+}
+
+li {
+    display: flow-root;
+ }
