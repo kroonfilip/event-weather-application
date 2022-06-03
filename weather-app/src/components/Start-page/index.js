@@ -118,9 +118,12 @@ function setsEvents(){
 const newId = save.length > 0 ? save[save.length - 1].id + 1: 1;
 const notify = () => toast.success("Added to favorites!");
 
-function renderEvent(){   //<---- SAKNAR KOMMENTARER!
+function renderEvent(){  
     /*
-    The code below renders the event. 
+    The code below renders the event by mapping the response from the api 
+    and then returns the data that is desplayed on the website. The return also 
+    handles the save to localstorage. 
+
     */
     
     try {
@@ -131,7 +134,7 @@ function renderEvent(){   //<---- SAKNAR KOMMENTARER!
                 <input type="image" src="like.png" className="save-button" value="Save" 
                 onMouseOver = {e => e.currentTarget.src = 'like-filled.png'} 
                 onMouseLeave = {e => e.currentTarget.src = 'like.png'}
-                onClick = {e =>{notify(); setSave([...save,{
+                onClick = {e =>{notify(); setSave([...save,{ //on click the event gets added to localstorage
                     id: newId,
                     date:date.current.value,
                     location:location.current.value,
@@ -149,7 +152,7 @@ function renderEvent(){   //<---- SAKNAR KOMMENTARER!
     }):""
     return renderEvent
    
-    }catch(err) {
+    }catch(err) { // if no events are available, display below.
         return (
             <li>No events on {date.current.value}</li>
         )
@@ -158,22 +161,22 @@ function renderEvent(){   //<---- SAKNAR KOMMENTARER!
 }  
 
 useEffect(() => {
-    saveLocalItems()
+    saveLocalItems() // calls the function that checks the content of storage
     
 }, [save])
 
 
 useEffect(() => {
-    getLocalItems()
+    getLocalItems() // calls the function that adds key and value to storage if empty
   }, []);
 
-  const saveLocalItems = () => {
+  const saveLocalItems = () => {// check whether there are items in localstorage
     if(save.length!== 0){       
       localStorage.setItem('save', JSON.stringify(save))
     }   
     }
 const getLocalItems = () => {
-    if(localStorage.getItem('save') === null){
+    if(localStorage.getItem('save') === null){ //if localstorage is empty, create key with value "[]"
         localStorage.setItem('save', JSON.stringify([]));
     }else {
         let saveLocal = JSON.parse(localStorage.getItem('save'));
@@ -181,7 +184,9 @@ const getLocalItems = () => {
     }
     }
 
-
+    /*
+    The following segment renders the displayable content on the site. 
+    */
     return (
         <>
         <div className="start-page">
