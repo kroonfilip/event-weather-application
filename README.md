@@ -32,7 +32,7 @@ This project is created with:
 
 ## Other possible frameworks
 * **Angular**
-    * Opted out due to a higher learning curve and that it is considered more suitable for larger business applications. Another argument against        Angular ist that we have no experience with TypeScript.
+    * Opted out due to a higher learning curve and that it is considered more suitable for larger business applications. Another argument against        Angular is that we have no experience with TypeScript.
 * **Vue**
     * Vue could be an alternative as it is a small and fast framework, but React's extensive support, flexibility and in-demand knowledge of the labor market outweighs and in this case it is the decisive argument.
     * Vue uses Single-file components which is a format where CSS, JavaScript and HTML are written in the same file. This is something the project group isn´t used to and therefore this is also a reason why the group did not choose Vue.
