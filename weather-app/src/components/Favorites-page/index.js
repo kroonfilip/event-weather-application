@@ -49,8 +49,8 @@ const Favorites = () => {
        
     return ( //returns and renders the components of the site.
         <div className="favorites">
-            <h1>Favorites</h1>
-            <h3>RESULTAT</h3>
+            <h1 className='w3-center'>Favorites</h1>
+            <h3>Your saved events:</h3>
             <ul id="saved-list">
                 <p>{printFavorites()}</p>
             </ul>
