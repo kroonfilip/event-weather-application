@@ -83,7 +83,7 @@ function setsWeather(lat, long, diff) {
     */
 
     //One call weather API url:
-    const apiUrlWeather = 'https://api.openweathermap.org/data/3.0/onecall?lat='+lat+'&lon='+long+'&units=metric&lang=en&exclude=hourly,minutely&appid=7b876dba81adf23c3ab28f297a4ac7aa';
+    const apiUrlWeather = 'https://api.openweathermap.org/data/3.0/onecall?lat='+lat+'&lon='+long+'&units=metric&lang=en&exclude=hourly,minutely&appid=';
 
     axios.get(apiUrlWeather).then((response) => { //Does the API call and handles the response.
         try {
@@ -103,7 +103,7 @@ function setsEvents(){
     let endDateWithTime = date.current.value + 'T23:59:59Z';
     
     //The Ticketmaster URL:
-    const apiUrlTicketmaster = 'https://app.ticketmaster.com/discovery/v2/events.json?city='+location.current.value+'&startDateTime='+startDateWithTime+'&endDateTime='+endDateWithTime+'&apikey=4Kl2lBFXuu3mkGzmE4P6VXRoXqfgar8O';
+    const apiUrlTicketmaster = 'https://app.ticketmaster.com/discovery/v2/events.json?city='+location.current.value+'&startDateTime='+startDateWithTime+'&endDateTime='+endDateWithTime+'&apikey=';
 
     axios.get(apiUrlTicketmaster).then((answer) => { //Does the API call. 
         try { //Tries to set events
