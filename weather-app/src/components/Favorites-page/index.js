@@ -9,6 +9,10 @@ const Favorites = () => {
     const notify = () => toast.info("Event removed from favorites!");
         
     function printFavorites() {
+        /*
+        The following function maps the content in localstorage and displays it 
+        on the website.
+        */
         
         
         var printItems = eventItems.map((item) => {
@@ -32,7 +36,11 @@ const Favorites = () => {
 
 
 
-function removeItem(e, id) {
+    function removeItem(e, id) {
+    /*
+    The following function filters the items in the array 
+    and deletes the saved event from localstorage.
+    */
     
     var eventFilter = eventItems.filter(function(item){
         return id !== item.id
@@ -41,15 +49,15 @@ function removeItem(e, id) {
     SetEventItems(eventFilter)
 }
        
-         return (
-        <div className="favorites">
-            <h1>Favorites</h1>
-            <h3>RESULTAT</h3>
-            <ul id="saved-list">
-                
-                <p>{printFavorites()}</p>
-            </ul>
-        </div>
+        return (
+            <div className="favorites">
+                <h1>Favorites</h1>
+                <h3>RESULTAT</h3>
+                <ul id="saved-list">
+                    
+                    <p>{printFavorites()}</p>
+                </ul>
+            </div>
     )
 }
 
