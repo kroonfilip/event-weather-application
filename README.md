@@ -14,6 +14,7 @@ This website uses external APIs from:
 ## Technology
 This project is created with:
 * React version: 18.1.0
+* W3.CSS version 4
 
 ## Arguments for React
 * **Learning curve** 
