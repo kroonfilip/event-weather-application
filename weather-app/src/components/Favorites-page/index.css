@@ -16,7 +16,6 @@ li {
  }
 
 .bin {
-    display: flex;
     float: right;
     width: 45px;
     margin: 2px;
