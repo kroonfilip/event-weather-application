@@ -61,7 +61,7 @@ function getCoords(diffDays) {
     */
 
     //The Geolocation API URL:
-    const apiUrlGeoLocation = 'http://api.openweathermap.org/geo/1.0/direct?q='+location.current.value+'&appid=bcea';
+    const apiUrlGeoLocation = 'http://api.openweathermap.org/geo/1.0/direct?q='+location.current.value+'&appid=';
 
     axios.get(apiUrlGeoLocation).then((response) => { //Does the call and handles the response
         try {
@@ -127,9 +127,9 @@ function renderEvent(){
     */
     
     try {
-    var renderEvent = event.events ? event.events.map(item => {
+    var renderEvent = event.events ? event.events.map((item,index) => {
         return (
-            <li>
+            <li key={index}>
                 
                 <input type="image" src="like.png" className="save-button" value="Save" 
                 onMouseOver = {e => e.currentTarget.src = 'like-filled.png'} 
@@ -144,7 +144,7 @@ function renderEvent(){
                 </input>
                 
                 <img src={item.images[3].url} className="w3-round" alt="event-poster"></img>
-                <p span className="bolded">{item.name}</p>
+                <p span="true" className="bolded">{item.name}</p>
                 <p>Venue: {item._embedded.venues[0].name}</p>
                 <a href={item.url} className="w3-button w3-black w3-hover-white" target="_blank" rel="noreferrer">Book here</a>
             </li>
