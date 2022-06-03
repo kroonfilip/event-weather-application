@@ -14,3 +14,10 @@ ul > li > a {
 li {
     display: flow-root;
  }
+
+ .bin {
+    float: right;
+    width: 45px;
+    margin: 2px;
+    padding-left: 2px;
+}
