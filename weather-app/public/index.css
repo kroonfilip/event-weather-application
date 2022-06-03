@@ -133,6 +133,22 @@ h3 {
         "main"
         "footer";
     }
+    #event > ul > li > p {
+        display: inline-block;
+    }
+
+    #saved-list > ul > li > p {
+        display: inline-block;
+    }
+
+    #name {
+        display: inline-flex;
+    }
+
+    #name-favorites {
+        display: inline-flex;
+    }
+
 }
 
   

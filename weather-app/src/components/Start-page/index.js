@@ -145,8 +145,9 @@ function renderEvent(){
                 </input>
                 
                 <img src={item.images[3].url} className="w3-round" alt="event-poster"></img>
-                <p span="true" className="bolded">{item.name}</p>
-                <p>Venue: {item._embedded.venues[0].name}</p>
+                <p id='name' span="true" className="bolded">{item.name}</p>
+                <br></br>
+                <p span="true" id='venue'>Venue: {item._embedded.venues[0].name}</p>
                 <a href={item.url} className="w3-button w3-black w3-hover-white" target="_blank" rel="noreferrer">Book here</a>
             </li>
         )
