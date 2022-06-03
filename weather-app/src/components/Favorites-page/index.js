@@ -26,7 +26,6 @@ const Favorites = () => {
                     onMouseOver = {e => e.currentTarget.src = 'bin-open.png'} 
                     onMouseLeave = {e => e.currentTarget.src = 'bin-closed.png'}
                     onClick={e =>{removeItem(e,item.id); notify()}}></input>
-                    <ToastContainer/>
                 </li>
             )
         })
@@ -54,6 +53,7 @@ const Favorites = () => {
             <ul id="saved-list">
                 <p>{printFavorites()}</p>
             </ul>
+            <ToastContainer/>
         </div>
     )
 }
