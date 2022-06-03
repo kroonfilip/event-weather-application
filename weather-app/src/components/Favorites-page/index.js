@@ -21,15 +21,16 @@ const Favorites = () => {
                     <p>{item.location}</p>
                     <img src={item.img} className="w3-round" alt="event-poster"></img>
                     <p>{item.event}</p>
-                    <a href={item.link} target="_blank">Book here</a>
-                    <input type="button" value="delete" onClick={e =>{removeItem(e,item.id); notify()}}></input>
-                    </li>
-                )
-            })
-        
-            return printItems
-        }
-    
+                    <a href={item.link} target="_blank" rel='noreferrer' >Book here</a>
+                    <input type="image" alt='Delete' src='bin-closed.png' value="Delete"
+                    onMouseOver = {e => e.currentTarget.src = 'bin-open.png'} 
+                    onMouseLeave = {e => e.currentTarget.src = 'bin-closed.png'}
+                    onClick={e =>{removeItem(e,item.id); notify()}}></input>
+                </li>
+            )
+        })
+        return printItems
+    }
 
 
 
@@ -47,8 +48,8 @@ const Favorites = () => {
        
     return ( //returns and renders the components of the site.
         <div className="favorites">
-            <h1>Favorites</h1>
-            <h3>RESULTAT</h3>
+            <h1 className='w3-center'>Favorites</h1>
+            <h3>Your saved events:</h3>
             <ul id="saved-list">
                 <p>{printFavorites()}</p>
             </ul>
