@@ -103,7 +103,7 @@ function setsEvents(){
     let endDateWithTime = date.current.value + 'T23:59:59Z';
     
     //The Ticketmaster URL:
-    const apiUrlTicketmaster = 'https://app.ticketmaster.com/discovery/v2/events.json?city='+location.current.value+'&apikey=';
+    const apiUrlTicketmaster = 'https://app.ticketmaster.com/discovery/v2/events.json?city='+location.current.value+'&startDateTime='+startDateWithTime+'&endDateTime='+endDateWithTime+'&apikey=';
 
     axios.get(apiUrlTicketmaster).then((answer) => { //Does the API call. 
         try { //Tries to set events
