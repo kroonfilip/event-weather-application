@@ -8,7 +8,7 @@ const Contact = () => {
                 If you have any questions or want to contact us please do that on the email or number below:
             </p>
             <p>Mail:</p>
-            <a href="mailto: cassandrawindahl@outlook.com">cassandrawindahl@outlook.com</a>
+            <a href="mailto: event-weather@gmail.com">event-weather@gmail.com</a>
             <p>Phone:</p>
             <a href="tel: +4682937482065556">+4682937482065556</a>
         </div>
