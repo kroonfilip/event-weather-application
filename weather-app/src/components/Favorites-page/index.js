@@ -20,6 +20,7 @@ const Favorites = () => {
                 <li key={item.id}>
                     <p>{item.date}</p>
                     <p>{item.location}</p>
+                    <img src={item.img} className="w3-round" alt="event-poster"></img>
                     <p>{item.event}</p>
                     <a href={item.link} target="_blank">Book here</a>
                     <input type="button" value="delete" onClick={e =>{removeItem(e,item.id); notify()}}></input>
