@@ -131,7 +131,7 @@ function renderEvent(){
         return (
             <li>
                 
-                <input type="image" src="like.png" className="save-button" value="Save" 
+                <input type="image" alt='save' src="like.png" className="save-button" value="Save" 
                 onMouseOver = {e => e.currentTarget.src = 'like-filled.png'} 
                 onMouseLeave = {e => e.currentTarget.src = 'like.png'}
                 onClick = {e =>{notify();setSave([...save,{ //on click the event gets added to localstorage
